@@ -1,0 +1,19 @@
+## 📌 目標：
+
+設計並實作一個 Push Hub 模組，能夠讓前端透過 long polling-like 方式（SSE） 接收訊息，並預留架構日後能擴充至 WebSocket 雙向溝通。要求介面需遵守 OCP 原則，支援 runtime 多型，未來新增 Channel 實作無需修改核心邏輯。
+
+
+## ✳️ 功能需求：
+	1.	支援 Server-Sent Events (SSE)
+	2.	抽象化 PushChannel（使用介面設計）
+	3.	預留支援 WebSocket 的擴充性
+	4.	可注入到 handler，對外提供 HTTP endpoint（初期僅 SSE）
+	5.	支援多 client 註冊/取消註冊
+	6.	具備簡易推播 API，能將訊息發送給對應 channel 的 client
+	7.	提供 Class Diagram 與行為分kk析
+
+## 🧩 技術限制：
+	•	使用 Golang
+	•	使用 net/http 標準套件（不使用第三方 SSE lib）
+	•	不使用 gorilla/websocket 直到需要支援 WebSocket
+	•	必須 thread-safe，支援多 client 註冊與斷線
